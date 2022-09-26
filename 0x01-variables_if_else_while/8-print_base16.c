@@ -1,22 +1,25 @@
-. #include <stdio.h>
-
+#include <stdio.h>
 /**
- * main - Prints numbers between 0 to 9 with commas and spaces.
+ * main - entry point
  *
- * Return: Always 0 (Success)
+ * Return: alway returns 0
+ *
  */
 int main(void)
 {
+	unsigned char a = '0';
 	int i;
 
-	for (i = 48; i < 58; i++)
+	for (i = 0; i < 10; i++)
 	{
-		putchar(i);
-		if (i != 57)
-		{
-			putchar(',');
-			putchar(' ');
-		}
+		putchar(a);
+		a++;
+	}
+	a = '1';
+	for (i = 0; i < 6; i++)
+	{
+		putchar('0' + a);
+		a++;
 	}
 	putchar('\n');
 	return (0);
