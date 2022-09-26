@@ -1,20 +1,16 @@
 #include "main.h"
-
 /**
- * print_line - printing lines
- * @n: number of times
+ * print_line - prints a line
  *
- * Return: void
+ * @n: integer to print stuff?
  */
-
-
 void print_line(int n)
 {
 	int i;
 
 	for (i = 0; i < n; i++)
 	{
-		putchar('');
+		putchar('_');
 	}
 	_putchar('\n');
 }
