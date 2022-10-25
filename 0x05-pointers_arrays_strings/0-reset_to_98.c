@@ -1,26 +1,12 @@
 #include "main.h"
 
 /**
- * _strcat - concat 2 string
- * @dest:char
- * @src:char
- * Return:char
+ * reset_to_98 - it reset n to another value when called
+ * @n: the parameter to reset
+ * Return: None
  */
-char *_strcat(char *dest, char *src)
+
+void reset_to_98(int *n)
 {
-	char *s = dest;
-
-	while (*dest != '\0')
-	{
-		dest++;
-	}
-
-	while (*src != '\0')
-	{
-		*dest = *src;
-		dest++;
-		src++;
-	}
-	*dest = '\0';
-	return (s);
+	*n = 98;
 }
