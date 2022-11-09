@@ -1,137 +1,84 @@
-#include <stdio.h>
-#include <stdlib.h>
-#include <ctype.h>
 #include "main.h"
-
+#include <stdlib.h>
+void util(char **, char *);
+void create_word(char **, char *, int, int, int);
 /**
- * strtow - splits a string into words
- * @str: string to split
- * Return: return a pointer to an array of strings
+ * strtow - splits a string into words.
+ * @str: the string
+ *
+ * Return: returns a pointer to an array of strings (words)
  */
-int get_w_size(char *str);
-char **allocmem(char *str, int size, char *new_arr[]);
-
 char **strtow(char *str)
 {
-	int i, j, tmp, size;
-	char **new_arr;
-
-	if (str == NULL)
-	{
-		return (NULL);
-	}
-
-	size = get_w_size(str);
-
-	new_arr = malloc(sizeof(char) * (size + 1));
-
-	if (new_arr == NULL)
-	{
-		return (NULL);
-	}
-
-	new_arr = allocmem(str, size, new_arr);
-
-	j = 0;
-	for (i = 0; i < 3; i++)
-	{
-		tmp = 0;
-		while (str[j] != '\0')
-		{
-			if (str[j] == ' ')
-			{
-				while (str[j] == ' ' && str[j] != '\0')
-				{
-					j++;
-				}
-			}
-			else
-			{
-				while (str[j] != ' ')
-				{
-				/*	printf("j = %d; tmp = %d\n", j, tmp);*/
-					new_arr[i][tmp] = str[j];
-					j++;
-					tmp++;
-				}
-				new_arr[i][tmp] = '\0';
-				break;
-			}
-		}
-/*		printf("The value of split is: %s\n", new_arr[i]);*/
-	}
-	new_arr[size] = NULL;
-	return (new_arr);
+int i, flag, len;
+char **words;
+if (str == NULL || str[0] == '\0' || (str[0] == ' ' && str[1] == '\0'))
+return (NULL);
+i = flag = len = 0;
+while (str[i])
+{
+if (flag == 0 && str[i] != ' ')
+flag = 1;
+if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+{
+flag = 0;
+len++;
+}
+i++;
+}
+len += flag == 1 ? 1 : 0;
+if (len == 0)
+return (NULL);
+words = (char **)malloc(sizeof(char *) * (len + 1));
+if (words == NULL)
+return (NULL);
+util(words, str);
+words[len] = NULL;
+return (words);
 }
 
 /**
- * allocmem - allocated to split string i.e 2d array
- * @size: size of the outer array
- * @str: str to split
- * @new_arr: new array to use with dynamic mem allocation
- * Return: returns a pointer to an array of string
+ * util - a util function for fetching words into an array
+ * @words: the strings array
+ * @str: the string
  */
-
-char **allocmem(char *str, int size, char *new_arr[])
+void util(char **words, char *str)
 {
-	int i, j, w_size;
-
-	j = 0;
-	for (i = 0; i < size; i++)
-	{
-		w_size = 0;
-
-		while (str[j] != '\0')
-		{
-			if (str[j] == ' ')
-			{
-				while (str[j] == ' ')
-				{
-					j++;
-				}
-			}
-			else
-			{
-				while (str[j] != ' ')
-				{
-					j++;
-					w_size++;
-				}
-				new_arr[i] = malloc(sizeof(char) * w_size + 1);
-			/*	printf("j = %d; w_size = %d\n", j, w_size);*/
-				break;
-			}
-		}
-	}
-	return (new_arr);
+int i, j, start, flag;
+= j = flag = 0;
+(str[i])
+{
+if (flag == 0 && str[i] != ' ')
+{
+start = i;
+flag = 1;
+}
+if (i > 0 && str[i] == ' ' && str[i - 1] != ' ')
+{
+create_word(words, str, start, i, j);
+j++;
+flag = 0;
+}
+i++;
+}
+(flag == 1)
+create_word(words, str, start, i, j);
 }
 
 /**
- * get_w_size - get the size of str
- * @str: size to calculate
- * Return: return the size of str
+ * create_word - creates a word and insert it into the array
+ * @words: the array of strings
+ * @str: the string
+ * @start: the starting index of the word
+ * @end: the stopping index of the word
+ * @index: the index of the array to insert the word
  */
-
-int get_w_size(char *str)
+void create_word(char **words, char *str, int start, int end, int index)
 {
-	int i, size;
-
-	i = 0;
-	size = 0;
-	while (str[i] != '\0')
-	{
-		if (isalnum(str[i]))
-		{
-			size++;
-			while (isalnum(str[i]))
-			{
-				i++;
-			}
-		}
-		else
-		{
-			i++;
-		}
-	}
-	return (size);
+i, j;
+= end - start;
+[index] = (char *)malloc(sizeof(char) * (i + 1));
+(j = 0; start < end; start++, j++)
+words[index][j] = str[start];
+words[index][j] = '\0';
 }
