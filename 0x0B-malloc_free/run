@@ -1,0 +1,2 @@
+#!/bin/bash
+gcc -Wall -pedantic -Wextra -Werror -std=gnu89 main.c 101-strtow.c && ./a.out
