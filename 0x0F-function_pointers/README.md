@@ -1,1 +1,1 @@
-I guess true love till exist. Eri is just one of a kind. Thank you baby....kisses!
+I guess true love still exist. Eri is just one of a kind. Thank you baby....kisses!
